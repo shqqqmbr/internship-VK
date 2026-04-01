@@ -1,0 +1,8 @@
+tarantool:
+  host: localhost
+  port: 3301
+  username: guest
+  password: ""
+
+grpc:
+  port: 8080

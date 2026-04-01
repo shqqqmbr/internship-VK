@@ -1,0 +1,18 @@
+services:
+  tarantool:
+    image: tarantool/tarantool:3.2.0
+    ports:
+      - 3301:3301
+    volumes:
+      - ./server/src/main/resources/db/init.lua:/opt/tarantool/init.lua
+    command: tarantool /opt/tarantool/init.lua
+
+  server:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - tarantool
+    environment:
+      - TARANTOOL_HOST=tarantool
+      - TARANTOOL_PORT=3301
